@@ -15,8 +15,15 @@ class Neighborhood {
     store.neighborhoods.push(this)
   }
 
-  deliveries(){}
-  customers(){}
+  deliveries(){
+    return store.deliveries.filter(delivery =>
+      delivery.neighborhoodId === this.id
+    )
+  }
+  customers(){
+    return store.customers.filter(customer =>
+      customer.neighborhoodId === this.id)
+  }
   meals(){}
 
 }
@@ -30,8 +37,15 @@ class Customer {
     store.customers.push(this)
   }
 
-  deliveries(){}
-  meals(){}
+  deliveries(){
+    return store.deliveries.filter(delivery =>
+    delivery.customerId === this.id)
+  }
+
+  meals(){
+
+  }
+
   totalSpent(){}
 }
 
@@ -44,7 +58,43 @@ class Meal {
     store.meals.push(this)
   }
 
-  deliveries(){}
-  customers(){}
+  deliveries(){
+    return store.deliveries.filter(delivery =>
+    delivery.mealId === this.id)
+  }
+  customers(){
+  
+  }
   byPrice(){}
+}
+
+class Delivery {
+  constructor(mealId, neighborhoodId, customerId){
+    this.mealId = mealId
+    this.neighborhoodId = neighborhoodId
+    this.customerId = customerId
+    this.id = ++deliveryId
+
+    store.deliveries.push(this)
+  }
+
+  meal(){
+    return store.meals.find(
+      function(meal) {
+        return meal.id === this.mealId
+      }.bind(this)
+    )
+  }
+  customer(){
+    return store.customers.find(
+      function(customer){
+        return customer.id === this.customerId
+      }.bind(this)
+    )
+  }
+  neighborhood(){
+    return store.neighborhoods.find(neighborhood =>
+      neighborhood.id === this.neighborhoodId
+    )
+  }
 }
