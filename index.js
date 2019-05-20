@@ -94,10 +94,6 @@ class Meal {
     static byPrice() {
       return store.meals.sort((a, b) => a.price < b.price);
     }
-
-  // static byPrice() {
-  //   return store.meals.sort((a, b) => a.price - b.price;)
-  // }
 }
 
 class Delivery {
